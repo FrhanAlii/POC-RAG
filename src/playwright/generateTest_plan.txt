@@ -1,0 +1,47 @@
+
+// 1. New Imports
+import { patternStore } from '../rag/patternStore';
+import { getEmbedding } from '../rag/embed';
+
+// 2. Modify generateRealTest function
+export async function generateRealTest(input: RealTestInput): Promise<string> {
+  // ... existing setup ...
+
+  const cleanTestGoal = (input.testGoal || 'Verify functionality').replace(/`/g, '').trim();
+
+  // === RAG RETRIEVAL START ===
+  logger.info(`[RAG] Searching for patterns matching: "${cleanTestGoal}"`);
+  
+  // Get embedding for the GOAL
+  const goalEmbedding = await getEmbedding(cleanTestGoal);
+  
+  // Search the Pattern Store
+  const patterns = patternStore.search(goalEmbedding, 2); // Get top 2 matches
+  
+  const retrievalContext = patterns.map(p => `
+// PATTERN: ${p.id}
+// SOURCE: ${p.metadata.source}
+${p.text}
+  `).join('\n\n');
+
+  logger.info(`[RAG] Found ${patterns.length} relevant patterns.`);
+  // === RAG RETRIEVAL END ===
+
+  // 3. Updated User Prompt
+  const userPrompt = `
+TARGET URL: ${input.targetUrl}
+SCENARIO: 
+"""
+${cleanTestGoal}
+"""
+
+RELEVANT CODE PATTERNS (Use these as your primary reference):
+${retrievalContext}
+
+Generate a robust Playwright test based on the SCENARIO.
+- If a pattern matches the scenario, ADAPT IT exactly.
+- Use page.locator() only.
+`;
+  
+  // ... rest of the LLM generation logic ...
+}

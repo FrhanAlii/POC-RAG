@@ -1,0 +1,80 @@
+[
+  {
+    "description": "  Description: The selected HP laptop product should be successfully added and visible in the cart page item list.",
+    "elements": [
+      {
+        "description": "",
+        "id": "amazon-search-hp-laptop-and-add-to-cart-verification;amazon-search-hp-laptop-and-add-to-cart-verification",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Amazon Search HP Laptop And Add To Cart Verification",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1341199
+            }
+          },
+          {
+            "arguments": [
+              {
+                "content": "Navigate to https://www.amazon.comWait for homepage to loadLocate search input boxEnter \"HP work laptop\" into search inputSubmit searchWait for search results page to loadClick first product from search resultsWait for product detail page to loadClick Add To Cart buttonNavigate to Cart pageVerify added product is present in cart",
+                "line": 7
+              }
+            ],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I perform the following test steps:",
+            "match": {
+              "location": "src\\cucumber\\steps\\generic.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 139677402899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "the test should pass",
+            "match": {
+              "location": "src\\cucumber\\steps\\common.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1700699
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 729699
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@caseId:38",
+            "line": 4
+          },
+          {
+            "name": "@automated",
+            "line": 4
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "amazon-search-hp-laptop-and-add-to-cart-verification",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Amazon Search HP Laptop And Add To Cart Verification",
+    "tags": [],
+    "uri": "features\\38.feature"
+  }
+]

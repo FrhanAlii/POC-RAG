@@ -1,0 +1,59 @@
+{
+  "name": "node-ts-bootstrap",
+  "version": "1.0.0",
+  "description": "Node 18+ TypeScript repo scaffold for TestRail/Gherkin/Playwright pipeline",
+  "main": "dist/cli.js",
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsc",
+    "poc": "node dist/cli.js",
+    "lint": "eslint src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:cucumber": "cucumber-js",
+    "test:feature": "cucumber-js features/",
+    "test:case38": "cucumber-js features/38.feature",
+    "test:auto38": "ts-node scripts/generateFeatureFromTestRail.ts 38 && cucumber-js features/38.feature",
+    "test:auto40": "ts-node scripts/generateFeatureFromTestRail.ts 40 && cucumber-js features/40.feature",
+    "test:auto": "ts-node scripts/orchestrateTest.ts",
+    "generate-feature": "ts-node scripts/generateFeatureFromTestRail.ts",
+    "ingest-patterns": "ts-node scripts/ingestPatterns.ts"
+  },
+  "keywords": [
+    "cli",
+    "testing",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "axios": "^1.13.4",
+    "axios-retry": "^4.5.0",
+    "cheerio": "^1.2.0",
+    "chromadb": "^3.2.2",
+    "commander": "^12.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1",
+    "openai": "^6.18.0",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "uuid": "^13.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.6.0",
+    "@cucumber/pretty-formatter": "^3.0.0",
+    "@playwright/test": "^1.58.2",
+    "@types/axios": "^0.9.36",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.19.32",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
